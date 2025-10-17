@@ -1,4 +1,5 @@
 """Streamlit app for interactive predictions."""
+
 from __future__ import annotations
 
 import json

@@ -1,4 +1,5 @@
 """Command line interface for training and inference."""
+
 from __future__ import annotations
 
 import argparse
@@ -49,16 +50,18 @@ def cmd_train(args: argparse.Namespace) -> None:
     train_config = _config_from_yaml(cfg)
     result = train(train_config)
     print("Training complete")
-    print(json.dumps(
-        {
-            "rmse": result.regression_metrics.rmse,
-            "rmsle": result.regression_metrics.rmsle,
-            "mae": result.regression_metrics.mae,
-            "r2": result.regression_metrics.r2,
-            "conformal_quantile": result.conformal_quantile,
-        },
-        indent=2,
-    ))
+    print(
+        json.dumps(
+            {
+                "rmse": result.regression_metrics.rmse,
+                "rmsle": result.regression_metrics.rmsle,
+                "mae": result.regression_metrics.mae,
+                "r2": result.regression_metrics.r2,
+                "conformal_quantile": result.conformal_quantile,
+            },
+            indent=2,
+        )
+    )
 
 
 def cmd_predict(args: argparse.Namespace) -> None:
@@ -103,7 +106,9 @@ def build_parser() -> argparse.ArgumentParser:
 
     subparsers = parser.add_subparsers(dest="command", required=True)
 
-    train_parser = subparsers.add_parser("train", help="Train the model", parents=[parent])
+    train_parser = subparsers.add_parser(
+        "train", help="Train the model", parents=[parent]
+    )
     train_parser.set_defaults(func=cmd_train)
 
     predict_parser = subparsers.add_parser(

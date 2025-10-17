@@ -1,4 +1,5 @@
 """Metric helpers for regression and classification."""
+
 from __future__ import annotations
 
 from dataclasses import dataclass
@@ -20,10 +21,13 @@ def regression_metrics(y_true: np.ndarray, y_pred: np.ndarray) -> RegressionMetr
     """Compute common regression metrics."""
 
     rmse = metrics.mean_squared_error(y_true, y_pred, squared=False)
-    rmsle = metrics.mean_squared_log_error(
-        np.clip(y_true, a_min=0, a_max=None),
-        np.clip(y_pred, a_min=0, a_max=None),
-    ) ** 0.5
+    rmsle = (
+        metrics.mean_squared_log_error(
+            np.clip(y_true, a_min=0, a_max=None),
+            np.clip(y_pred, a_min=0, a_max=None),
+        )
+        ** 0.5
+    )
     mae = metrics.mean_absolute_error(y_true, y_pred)
     r2 = metrics.r2_score(y_true, y_pred)
     return RegressionMetrics(rmse=rmse, rmsle=rmsle, mae=mae, r2=r2)
@@ -53,4 +57,6 @@ def classification_metrics(
 def to_dict(metrics_obj) -> Dict[str, float]:  # pragma: no cover - convenience
     """Convert a dataclass metrics object to dictionary."""
 
-    return {field: getattr(metrics_obj, field) for field in metrics_obj.__dataclass_fields__}
+    return {
+        field: getattr(metrics_obj, field) for field in metrics_obj.__dataclass_fields__
+    }
