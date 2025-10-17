@@ -1,0 +1,39 @@
+# Python
+__pycache__/
+*.py[cod]
+*.so
+*.egg-info/
+.eggs/
+.env
+.venv/
+venv/
+ENV/
+
+# Editors
+.vscode/
+.idea/
+
+# Data & models
+/data/
+/models/
+/reports/figures/
+!data/.gitkeep
+!models/.gitkeep
+!reports/figures/.gitkeep
+
+# Logs
+logs/
+*.log
+
+# Cache
+.mypy_cache/
+.pytest_cache/
+.ipynb_checkpoints/
+
+# Coverage
+htmlcov/
+.coverage*
+
+# Others
+.DS_Store
+*.swp
