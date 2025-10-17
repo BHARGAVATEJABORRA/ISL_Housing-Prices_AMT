@@ -1,4 +1,5 @@
 """Utility helpers for the ISL housing project."""
+
 from __future__ import annotations
 
 from typing import Iterable
@@ -34,9 +35,7 @@ def bucket_rare_categories(
 def normalise_columns(df: pd.DataFrame) -> pd.DataFrame:
     """Return a copy of the dataframe with normalised column names."""
     df = df.copy()
-    df.columns = (
-        df.columns.str.strip().str.lower().str.replace(" ", "_", regex=False)
-    )
+    df.columns = df.columns.str.strip().str.lower().str.replace(" ", "_", regex=False)
     return df
 
 

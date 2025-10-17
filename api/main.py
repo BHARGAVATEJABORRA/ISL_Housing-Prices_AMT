@@ -1,4 +1,5 @@
 """FastAPI service for the ISL housing model."""
+
 from __future__ import annotations
 
 import sys

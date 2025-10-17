@@ -1,4 +1,5 @@
 """Pytest configuration for optional dependencies and path setup."""
+
 from __future__ import annotations
 
 import sys
