@@ -1,0 +1,32 @@
+data:
+  path: data/Housing_data.xls
+  target: SalePrice
+  log_target: true
+
+preprocessing:
+  rare_threshold: 0.01
+  scale_numeric: true
+
+model:
+  type: xgboost
+  params:
+    n_estimators: 300
+    max_depth: 6
+    learning_rate: 0.05
+    subsample: 0.8
+    colsample_bytree: 0.8
+
+cv:
+  folds: 5
+  random_state: 42
+
+classification:
+  price_bins: []
+
+output:
+  artifact_dir: models
+  conformal_alpha: 0.1
+
+tracking:
+  mlflow:
+    enabled: false
